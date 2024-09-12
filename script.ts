@@ -51,6 +51,8 @@ form.addEventListener('submit', (event:Event) => {
     event.preventDefault();
 
     // Collect data from the form
+    const profilePicture = (document.getElementById("profile-pic") as HTMLInputElement).files?.[0];
+    const profilePictureUrl = profilePicture? URL.createObjectURL(profilePicture):"";
     const name = (document.getElementById('name') as HTMLInputElement).value;
     const email = (document.getElementById('email') as HTMLInputElement).value;
     const phone = (document.getElementById('phone') as HTMLInputElement).value;
@@ -59,8 +61,9 @@ form.addEventListener('submit', (event:Event) => {
 
     // Create a section for the resume output
     let resumeHTML = `
-        <h1>Dynamic resume builder</h1> <br/>   
-       <h3>Personal infomation:</h3>
+       <h1>Dynamic resume builder</h1> <br/>   
+        <h3>Personal infomation:</h3>
+        <img src=${profilePictureUrl} alt="profile-picture" />
         <p><b>Name: </b> ${name}</p>
         <p><b>Email:</b> ${email} | <b>Phone: </b> ${phone}</p>
         <p><b>Address: </b> ${address}</p>
